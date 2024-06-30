@@ -1,0 +1,335 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "initialOwner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_factoryAddress",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "OwnableInvalidOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "OwnableUnauthorizedAccount",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "factoryAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "getPolicy",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "bool",
+								"name": "allowInsert",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "allowUpdate",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "allowDelete",
+								"type": "bool"
+							},
+							{
+								"internalType": "string",
+								"name": "whereClause",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "withCheck",
+								"type": "string"
+							},
+							{
+								"internalType": "string[]",
+								"name": "updatableColumns",
+								"type": "string[]"
+							}
+						],
+						"internalType": "struct TablelandPolicy",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "caller",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "getPolicy",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "bool",
+								"name": "allowInsert",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "allowUpdate",
+								"type": "bool"
+							},
+							{
+								"internalType": "bool",
+								"name": "allowDelete",
+								"type": "bool"
+							},
+							{
+								"internalType": "string",
+								"name": "whereClause",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "withCheck",
+								"type": "string"
+							},
+							{
+								"internalType": "string[]",
+								"name": "updatableColumns",
+								"type": "string[]"
+							}
+						],
+						"internalType": "struct TablelandPolicy",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_factoryAddress",
+						"type": "address"
+					}
+				],
+				"name": "setFactoryAddress",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"errors": {
+				"OwnableInvalidOwner(address)": [
+					{
+						"details": "The owner is not a valid owner account. (eg. `address(0)`)"
+					}
+				],
+				"OwnableUnauthorizedAccount(address)": [
+					{
+						"details": "The caller account is not authorized to perform an operation."
+					}
+				]
+			},
+			"kind": "dev",
+			"methods": {
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"getPolicy(address)": {
+					"notice": "DEPRECATED. Use {TablelandController.getPolicy(address, uint256)} instead."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/base/tableland/SusuStorageController.sol": "Controller"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/access/Ownable.sol": {
+			"keccak256": "0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8ed324d3920bb545059d66ab97d43e43ee85fd3bd52e03e401f020afb0b120f6",
+				"dweb:/ipfs/QmfEckWLmZkDDcoWrkEvMWhms66xwTLff9DDhegYpvHo1a"
+			]
+		},
+		"@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
+				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
+			]
+		},
+		"@tableland/evm/contracts/TablelandController.sol": {
+			"keccak256": "0xd8fa533ef5d2e5e6afefdcae9fd466c58c268ac27cd23f6de12e794c7a715e1c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://839fd7c47cbf01c6f701beb0b48e8a8e4f83d8d9f6962e901801fde1d015bd47",
+				"dweb:/ipfs/QmbJqVWBHBqKqfDXVVghJf9BwMqVpvbdrGENKR6aUgsX6n"
+			]
+		},
+		"@tableland/evm/contracts/TablelandPolicy.sol": {
+			"keccak256": "0xc7d5e534ced54e7121ab2fbc268c77c708a3ba16c451bd403ba9789ddf1249c0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e19d4f4f0541ec188853ce753033e5c8cb185f1a37fb33bfdd4fc3d5c715e039",
+				"dweb:/ipfs/QmZpooUck6GMkY38wd1xrJhRDfPymvgtgn3o9DuHLbp9kw"
+			]
+		},
+		"@tableland/evm/contracts/interfaces/ITablelandController.sol": {
+			"keccak256": "0x2d6d1569cccafc126d4e09f3f481e5cc4e13bd5d0b73315b2b7e780a980a70c5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://3b1cfcbba3c95b2b5c9dcefb0f05f785c3253484675eec4b9d0296034622c088",
+				"dweb:/ipfs/QmPNTZrUD4Qre14q5BKReFHDQAagoDNg5NcQk6pHuaHrWq"
+			]
+		},
+		"contracts/base/tableland/SusuStorageController.sol": {
+			"keccak256": "0xbe6b25d2a6ddad26c0555e4f3118ec42dba5adb64dd5cc76e2ea42edb5dcb60a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://623b22b71ebc828431cf053c95428c6c1ec9105da31f6d7886ae8805e527d83c",
+				"dweb:/ipfs/QmTssKYUTnZvuxXBDdhXv9oxBM1W9qyXBg8s7kqknRDxEp"
+			]
+		}
+	},
+	"version": 1
+}

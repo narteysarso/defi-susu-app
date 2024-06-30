@@ -1,0 +1,319 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "chainid",
+						"type": "uint256"
+					}
+				],
+				"name": "ChainNotSupported",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "length",
+						"type": "uint256"
+					}
+				],
+				"name": "StringsInsufficientHexLength",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "createTable",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "deleteFromTable",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "m",
+						"type": "address"
+					}
+				],
+				"name": "getAddressString",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getTableId",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getTableName",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "groupId",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "memberAddress",
+						"type": "address"
+					}
+				],
+				"name": "insertIntoTable",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"name": "onERC721Received",
+				"outputs": [
+					{
+						"internalType": "bytes4",
+						"name": "",
+						"type": "bytes4"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "controller",
+						"type": "address"
+					}
+				],
+				"name": "setAccessControl",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "groupId",
+						"type": "address"
+					}
+				],
+				"name": "updateTable",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"errors": {
+				"StringsInsufficientHexLength(uint256,uint256)": [
+					{
+						"details": "The `value` string doesn't fit in the specified `length`."
+					}
+				]
+			},
+			"kind": "dev",
+			"methods": {
+				"onERC721Received(address,address,uint256,bytes)": {
+					"details": "See {IERC721Receiver-onERC721Received}. Always returns `IERC721Receiver.onERC721Received.selector`."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"errors": {
+				"ChainNotSupported(uint256)": [
+					{
+						"notice": "Current chain does not have a TablelandTables deployment."
+					}
+				]
+			},
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/base/tableland/SusuWalletStorage.sol": "SusuGroupStorage"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": {
+			"keccak256": "0x7f7a26306c79a65fb8b3b6c757cd74660c532cd8a02e165488e30027dd34ca49",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d01e0b2b837ee2f628545e54d8715b49c7ef2befd08356c2e7f6c50dde8a1c22",
+				"dweb:/ipfs/QmWBAn6y2D1xgftci97Z3qR9tQnkvwQpYwFwkTvDMvqU4i"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol": {
+			"keccak256": "0xaad20f8713b5cd98114278482d5d91b9758f9727048527d582e8e88fd4901fd8",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5396e8dbb000c2fada59b7d2093b9c7c870fd09413ab0fdaba45d882959c6244",
+				"dweb:/ipfs/QmXQn5XckSiUsUBpMYuiFeqnojRX4rKa9jmgjCPeTuPmhh"
+			]
+		},
+		"@openzeppelin/contracts/utils/Strings.sol": {
+			"keccak256": "0x55f102ea785d8399c0e58d1108e2d289506dde18abc6db1b7f68c1f9f9bc5792",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6e52e0a7765c943ef14e5bcf11e46e6139fa044be564881378349236bf2e3453",
+				"dweb:/ipfs/QmZEeeXoFPW47amyP35gfzomF9DixqqTEPwzBakv6cZw6i"
+			]
+		},
+		"@openzeppelin/contracts/utils/math/Math.sol": {
+			"keccak256": "0x005ec64c6313f0555d59e278f9a7a5ab2db5bdc72a027f255a37c327af1ec02d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4ece9f0b9c8daca08c76b6b5405a6446b6f73b3a15fab7ff56e296cbd4a2c875",
+				"dweb:/ipfs/QmQyRpyPRL5SQuAgj6SHmbir3foX65FJjbVTTQrA2EFg6L"
+			]
+		},
+		"@openzeppelin/contracts/utils/math/SignedMath.sol": {
+			"keccak256": "0x5f7e4076e175393767754387c962926577f1660dd9b810187b9002407656be72",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7d533a1c97cd43a57cd9c465f7ee8dd0e39ae93a8fb8ff8e5303a356b081cdcc",
+				"dweb:/ipfs/QmVBEei6aTnvYNZp2CHYVNKyZS4q1KkjANfY39WVXZXVoT"
+			]
+		},
+		"@tableland/evm/contracts/TablelandPolicy.sol": {
+			"keccak256": "0xc7d5e534ced54e7121ab2fbc268c77c708a3ba16c451bd403ba9789ddf1249c0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e19d4f4f0541ec188853ce753033e5c8cb185f1a37fb33bfdd4fc3d5c715e039",
+				"dweb:/ipfs/QmZpooUck6GMkY38wd1xrJhRDfPymvgtgn3o9DuHLbp9kw"
+			]
+		},
+		"@tableland/evm/contracts/interfaces/ITablelandTables.sol": {
+			"keccak256": "0x1fac08244133826a1c5e745783c4280ba002d6b828eb16d3750d4d5e29afccbb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9f627029ce4bd5ba0348d93d5b310c8e934da7f8324a4c2906ae8cc9c12f2cbb",
+				"dweb:/ipfs/Qmdx9fdrpYcWNEy8FWsA8HBMvdDHUS35bKgmvQQNPcP6pS"
+			]
+		},
+		"@tableland/evm/contracts/utils/SQLHelpers.sol": {
+			"keccak256": "0xcfb69c1bb8dcce6ec512c359fb922db4167a007c8cc8fa84456e4d244afb54e0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://48890234c9037b65e1258966ad8b5253d8dd1813aed0432ebf255e461aecb38b",
+				"dweb:/ipfs/QmPzFaLccqW6tjd3AM5qBdv2cXVKTVursT78xYDm76SvEM"
+			]
+		},
+		"@tableland/evm/contracts/utils/TablelandDeployments.sol": {
+			"keccak256": "0x93242fca0a1e9edd7476071d4e043808004b587d22c9f894210545b5a08916a2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://14e26bb373b8cb381b0a00bd4d64940d39b976e71be424ba793a215520c00566",
+				"dweb:/ipfs/QmPpLJXy432sawB3hZ61JNQZKze3CKDj9FdH3rXjxS3QTe"
+			]
+		},
+		"contracts/base/tableland/SusuWalletStorage.sol": {
+			"keccak256": "0x1ca1b3cf119ff27ed9bdeeba4e95d1497f222e58d8114c17ea2b58ab995bb499",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9e3bca279fa658c8bd7cda437204d0f927df6e3c2e72221f7ac62807c8ffd96c",
+				"dweb:/ipfs/QmPCNVPRZAQ8Ari875K2KGXTrkhqJBcjjiqAKKykeJUXzb"
+			]
+		},
+		"erc721a-upgradeable/contracts/IERC721AUpgradeable.sol": {
+			"keccak256": "0xaeabed185f4b889c097e61ef486a003e64cdc2d048b569ebcd315ff52a63367b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1467c43374b40d0965b14270cf134a96e806816b4447963f6a9c4106c5892eaf",
+				"dweb:/ipfs/QmYqrqLB1fmMb888r8EEB2AMkMkWDn7hmKw7TvLX9fb2y7"
+			]
+		}
+	},
+	"version": 1
+}

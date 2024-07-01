@@ -14,6 +14,7 @@ import { PlusCircledIcon } from '@radix-ui/react-icons'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import {abi } from "../abi/SusuManager.json"
 
 import {
     Form,
@@ -32,16 +33,18 @@ import {
 import { toast } from "@/components/ui/use-toast"
 import CustomInput from "./CustomInput"
 import { Loader2 } from 'lucide-react';
+import { useWriteContract } from 'wagmi';
 
 const FormSchema = z.object({
     address: z.string().length(42).startsWith('0x')
 })
 
-export function AddMemberForm() {
+export function AddMemberForm({groupId}:{groupId: `0x${string}`}) {
 
     const [isLoading, setIsLoading] = useState(false);
     const [dialogOpen, setDialogOpen] = useState(false);
     const submitButtonRef = useRef();
+    const { writeContract } = useWriteContract();
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
@@ -50,15 +53,32 @@ export function AddMemberForm() {
     })
 
     function onSubmit(data: z.infer<typeof FormSchema>) {
-        console.log(data);
-        toast({
-            title: "You submitted the following values:",
-            description: (
-                <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-                    <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-                </pre>
-            ),
-        })
+        alert('jhh')
+        try{
+            setIsLoading(true);
+            console.log(data)
+
+            writeContract({
+                abi,
+                address: groupId,
+                functionName: 'addContributor',
+                args: [data.address],
+            })
+    
+            toast({
+                title: "You the address below has been added to the Group",
+                description: (
+                    <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+                        <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+                    </pre>
+                ),
+            })
+        }catch(e){
+            console.log(e)
+        }finally{
+            setIsLoading(false);
+        }
+       
     }
 
     return (

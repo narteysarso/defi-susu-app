@@ -38,8 +38,9 @@ function AdminTabs() {
                 </div>
                 <TabsContent
                     value="groups"
-                    className="border-none p-0 outline-none"
+                    className="h-full flex-col border-none p-0 data-[state=active]:flex"
                 >
+                    <Separator className="my-4" />
                     <GroupTabContent />
 
                 </TabsContent>

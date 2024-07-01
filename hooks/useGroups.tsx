@@ -1,6 +1,8 @@
 'use client';
 
 import { ReactNode, createContext, useContext, useEffect, useState } from "react";
+import { useReadContract, useReadContracts } from "wagmi";
+import { abi as groupAbi } from "../abi/SusuManager.json";
 
 const GroupsContext = createContext({});
 
@@ -21,21 +23,20 @@ export function GroupProvider({ children }: { children: ReactNode }) {
 }
 
 export function useGroups({ address }: { address: `0x${string}` }) {
-    const { groups, isLoading, setGroups, setIsLoading} = useContext<any>(GroupsContext);
+    const { groups, isLoading, setGroups, setIsLoading } = useContext<any>(GroupsContext);
+
+   
+
+   
 
     useEffect(() => {
-        async function fetchGroups() {
-            //TODO: fetch group nft and metadata
-        }
-
-        (async () => {
-
-            const groups = await fetchGroups();
-            setGroups(groups);
-        })();
-    })
+        
+        console.log(groupData, error);
+    },[groupData, error]);
 
 
-    return { groups, loading: isLoading };
+
+
+    return { groupData, loading: isLoading };
 }
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Table,
     TableBody,
@@ -24,9 +24,18 @@ import {
 } from "@/components/ui/select"
 import { Button } from './ui/button'
 import { Badge } from './ui/badge'
+import { BigNumberish } from 'ethers'
+import MemberIdentity from './MemberIdentity'
+import { useTableland } from '@/tableland'
 
 
-function GroupContributions() {
+function GroupContributions({ groupId, roundId = 0 }: {groupId:  `0x${string}`, roundId: BigNumberish }) {
+
+    const [currentRound, setCurrentRound] = useState();
+    const [roundContributors, setRoundContributors] = useState([]);
+    const {readRoundContributions} = useTableland();
+
+    
 
     return (
         <Card
@@ -38,14 +47,22 @@ function GroupContributions() {
                     <CardDescription className='flex justify-between items-center w-full '>
                         <div className='flex gap-4 items-center'>
                             Current Round:
-                            <Select defaultValue='1'>
+                            <Select defaultValue={roundId.toString()} onValueChange={async (_roundId) => {
+                                const contribs = await readRoundContributions(groupId, _roundId);
+                                // console.log('paym', contribs);
+                                setRoundContributors(contribs)
+                            }}>
                                 <SelectTrigger className="w-[180px]">
                                     <SelectValue placeholder="Select round" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="1">1</SelectItem>
-                                    <SelectItem value="2">2</SelectItem>
-                                    <SelectItem value="3">3</SelectItem>
+                                    <SelectItem>Select Round</SelectItem>
+                                    {(roundId > 0n) &&
+                                        Array(roundId)
+                                            .fill(0)
+                                            .map((i) => <SelectItem value={i} key={i}>{i}</SelectItem>)
+                                    }
+
                                 </SelectContent>
                             </Select>
                         </div>
@@ -60,119 +77,30 @@ function GroupContributions() {
                     <TableHeader>
                         <TableRow>
                             <TableHead>Customer</TableHead>
-                            <TableHead className="hidden xl:table-column">
-                                Type
-                            </TableHead>
-                            <TableHead className="hidden xl:table-column">
-                                Status
-                            </TableHead>
-                            <TableHead className="hidden xl:table-column">
-                                Date
-                            </TableHead>
                             <TableHead className="text-right">Amount</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        <TableRow>
-                            <TableCell>
-                                <div className="font-medium">Liam Johnson</div>
-                                <div className="hidden text-sm text-muted-foreground md:inline">
-                                    liam@example.com
+                        {
+                            roundContributors?.length > 0 ? roundContributors.map(({address,amount}, idx) => (
+                                <TableRow key={idx}>
+                                    <TableCell>
+                                        <MemberIdentity address={address} />
+                                    </TableCell>
+                                    
+                                    <TableCell className="text-right">${amount}</TableCell>
+                                </TableRow>
+                            )) : (
+                                <div className="flex flex-col items-center  gap-1 text-center mx-2 my-2 py-4 px-4">
+                                    <h3 className="text-2xl font-bold tracking-tight">
+                                        No round contributions yet.
+                                    </h3>
+                                    <p className="text-sm text-muted-foreground">
+                                        Start a round and make contibutions :)
+                                    </p>
                                 </div>
-                            </TableCell>
-                            <TableCell className="hidden xl:table-column">
-                                Sale
-                            </TableCell>
-                            <TableCell className="hidden xl:table-column">
-                                <Badge className="text-xs" variant="outline">
-                                    Approved
-                                </Badge>
-                            </TableCell>
-                            <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
-                                2023-06-23
-                            </TableCell>
-                            <TableCell className="text-right">$250.00</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>
-                                <div className="font-medium">Olivia Smith</div>
-                                <div className="hidden text-sm text-muted-foreground md:inline">
-                                    olivia@example.com
-                                </div>
-                            </TableCell>
-                            <TableCell className="hidden xl:table-column">
-                                Refund
-                            </TableCell>
-                            <TableCell className="hidden xl:table-column">
-                                <Badge className="text-xs" variant="outline">
-                                    Declined
-                                </Badge>
-                            </TableCell>
-                            <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
-                                2023-06-24
-                            </TableCell>
-                            <TableCell className="text-right">$150.00</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>
-                                <div className="font-medium">Noah Williams</div>
-                                <div className="hidden text-sm text-muted-foreground md:inline">
-                                    noah@example.com
-                                </div>
-                            </TableCell>
-                            <TableCell className="hidden xl:table-column">
-                                Subscription
-                            </TableCell>
-                            <TableCell className="hidden xl:table-column">
-                                <Badge className="text-xs" variant="outline">
-                                    Approved
-                                </Badge>
-                            </TableCell>
-                            <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
-                                2023-06-25
-                            </TableCell>
-                            <TableCell className="text-right">$350.00</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>
-                                <div className="font-medium">Emma Brown</div>
-                                <div className="hidden text-sm text-muted-foreground md:inline">
-                                    emma@example.com
-                                </div>
-                            </TableCell>
-                            <TableCell className="hidden xl:table-column">
-                                Sale
-                            </TableCell>
-                            <TableCell className="hidden xl:table-column">
-                                <Badge className="text-xs" variant="outline">
-                                    Approved
-                                </Badge>
-                            </TableCell>
-                            <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
-                                2023-06-26
-                            </TableCell>
-                            <TableCell className="text-right">$450.00</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>
-                                <div className="font-medium">Liam Johnson</div>
-                                <div className="hidden text-sm text-muted-foreground md:inline">
-                                    liam@example.com
-                                </div>
-                            </TableCell>
-                            <TableCell className="hidden xl:table-column">
-                                Sale
-                            </TableCell>
-                            <TableCell className="hidden xl:table-column">
-                                <Badge className="text-xs" variant="outline">
-                                    Approved
-                                </Badge>
-                            </TableCell>
-                            <TableCell className="hidden md:table-cell lg:hidden xl:table-column">
-                                2023-06-27
-                            </TableCell>
-                            <TableCell className="text-right">$550.00</TableCell>
-                        </TableRow>
+                            )
+                        }
                     </TableBody>
                 </Table>
             </CardContent>

@@ -3,6 +3,10 @@ import { twMerge } from "tailwind-merge"
 import { Token } from '@coinbase/onchainkit/token';
 
 import { z } from "zod";
+import { BigNumberish, ethers } from "ethers";
+
+export const formatAmount = (amount: BigNumberish) => ethers.formatEther(amount)
+export const parseAmount = (amount: string) => ethers.parseEther(amount)
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))

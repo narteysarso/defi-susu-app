@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Card,
     CardContent,
@@ -27,12 +27,25 @@ import {
 import { ChevronsUpDown, Users } from 'lucide-react'
 import { Address, Avatar, Identity, Name } from '@coinbase/onchainkit/identity';
 import MemberIdentity from './MemberIdentity';
-import { TEST_ADDRESS } from '@/data/dummy-data';
+import { useTableland } from '@/tableland';
 
 const MAX_SHOWN_CONTRIBUTORS = 5;
 
 function GroupContributors({ groupId }: { groupId: string }) {
-    const [contributors, setContributors] = useState(TEST_ADDRESS || []);
+    const [contributors, setContributors] = useState([]);
+    const { readGroupsMembers } = useTableland();
+
+    useEffect(() => {
+        if (!groupId) return;
+        (async () => {
+            const result = await readGroupsMembers(groupId)
+
+            if (result?.length < 1) setContributors([]);
+
+            setContributors(result);
+
+        })();
+    }, [groupId]);
     return (
         <Card x-chunk="dashboard-01-chunk-1">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -42,13 +55,13 @@ function GroupContributors({ groupId }: { groupId: string }) {
                 <Users className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-                <div className="text-2xl font-bold">+2350</div>
+                <div className="text-2xl font-bold">{contributors?.length}</div>
                 <p className="text-xs text-muted-foreground">
-                    +180.1% from last month
+                    Members
                 </p>
                 <div className='flex items-center py-1'>
                     {
-                        contributors?.slice(0, MAX_SHOWN_CONTRIBUTORS).map((address, idx) => {
+                        contributors.length > 0 && contributors?.slice(0, MAX_SHOWN_CONTRIBUTORS).map(({address}, idx) => {
                             return (
                                 <TooltipProvider>
                                     <Tooltip>

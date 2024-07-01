@@ -1,6 +1,8 @@
+'use client'
 import Link from 'next/link'
 import React from 'react'
 import { ModeToggle } from './ModeToggle'
+import { ConnectAccount } from '@coinbase/onchainkit/wallet'
 
 function Navbar() {
   return (
@@ -9,7 +11,10 @@ function Navbar() {
         Logo
         </Link>
 
+        <div>
+        <ConnectAccount  />
         <ModeToggle />
+        </div>
 
     </nav>
   )

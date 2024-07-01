@@ -1,13 +1,13 @@
 import { http, createConfig } from 'wagmi';
-import { base } from 'wagmi/chains';
+import { base, baseSepolia, hardhat } from 'wagmi/chains';
 import { coinbaseWallet } from 'wagmi/connectors';
  
 export const wagmiConfig = createConfig({
-  chains: [base],
+  chains: [base, baseSepolia, hardhat],
   multiInjectedProviderDiscovery: false,
   connectors: [
     coinbaseWallet({
-      appName: 'yourAppName',
+      appName: 'Susu DApp',
       preference: 'all',
       version: '4',
     }),
@@ -15,5 +15,7 @@ export const wagmiConfig = createConfig({
   ssr: true,
   transports: {
     [base.id]: http(),
+    [baseSepolia.id]: http(),
+    [hardhat.id]: http(),
   },
 });
